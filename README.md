@@ -1,6 +1,8 @@
 
 # Context - a truly native AI Assistant
 
+Disclaimer: Teile des Codes sind KI generiert
+
 ## Prompt:
 ```
 you are a helpful assistant directly integrated into the users mac operating system.
@@ -36,6 +38,8 @@ extract the relevant information from the file and formulate it as a note on the
 - small processing indicator in the corner
 - allow user to pin answer in sticky note
 - allow user to select context (via focus or dropdown)
+- save option for shared documents like zotero
+- history page for all questions an answers
 
 ## Tools
 - Point out to user -> mark a location on screen where the user should go to

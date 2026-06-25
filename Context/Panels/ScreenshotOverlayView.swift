@@ -16,6 +16,7 @@ struct ScreenshotOverlayView: View {
     
     @State private var dragStart: CGPoint?
     @State private var currentRect: CGRect?
+    @State private var rectComplete: Bool = false
     
     var body: some View {
         GeometryReader { geo in
@@ -46,7 +47,8 @@ struct ScreenshotOverlayView: View {
                     }
                     .onEnded { value in
                         if let rect = currentRect, rect.width > 4, rect.height > 4 {
-                            onComplete(rect)
+                            rectComplete = true
+                            // onComplete(rect)
                         } else {
                             onCancel()
                         }

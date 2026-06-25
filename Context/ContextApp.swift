@@ -11,10 +11,12 @@ import KeyboardShortcuts
 @main
 struct ContextApp: App {
     @State private var appState = AppState()
+    @State private var answer: AnswerPanelController? = nil
     
     init() {
         KeyboardShortcuts.onKeyDown(for: .showContext) {
             ContextPanelController.shared.toggle()
+            AnswerPanelController.shared.toggle()
         }
         KeyboardShortcuts.onKeyDown(for: .screenshotContext) {
             ScreenshotOverlayController.shared.toggle()
