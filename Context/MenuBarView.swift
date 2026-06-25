@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct MenuBarView: View {
+    @State var enabled: Bool = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Toggle("Enabled", isOn: $enabled)
+        SettingsLink {
+            Text("Settings")
+        }
+        Button("Quit") {
+            NSApplication.shared.terminate(nil)
+        }
     }
 }
 

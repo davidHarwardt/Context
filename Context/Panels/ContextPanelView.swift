@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContextPanelView: View {
     var body: some View {
-        VStack {
+        QuestionView()
+        /* VStack {
             Color.red
-        }.frame(minWidth: 200, minHeight: 200)
+        }.frame(minWidth: 200, minHeight: 200) */
     }
 }
 
@@ -37,7 +38,7 @@ final class ContextPanelController: NSObject, NSWindowDelegate {
         let hosting = NSHostingController(rootView: content)
         
         let panel = ContextPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 280, height: 160),
+            contentRect: NSRect(x: 0, y: 0, width: 300, height: 1000),
             styleMask: [.nonactivatingPanel, .fullSizeContentView],
             backing: .buffered,
             defer: false,
@@ -47,7 +48,10 @@ final class ContextPanelController: NSObject, NSWindowDelegate {
         panel.level = .floating
         panel.collectionBehavior = [.fullScreenAuxiliary, .canJoinAllSpaces]
         panel.delegate = self
-        
+        panel.isOpaque = false
+        panel.backgroundColor = .clear
+        panel.hasShadow = false
+
         self.panel = panel
         positionAtCursor(panel)
         panel.makeKeyAndOrderFront(nil)
@@ -72,8 +76,4 @@ final class ContextPanelController: NSObject, NSWindowDelegate {
     func windowDidResignKey(_ notification: Notification) {
         panel?.orderOut(nil)
     }
-}
-
-#Preview {
-    ContextPanelView()
 }
