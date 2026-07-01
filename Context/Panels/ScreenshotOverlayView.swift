@@ -94,6 +94,11 @@ fileprivate class ScreenshotPanel: NSPanel {
 final class ScreenshotOverlayController: NSObject, NSWindowDelegate {
     static let shared = ScreenshotOverlayController()
     private var panel: ScreenshotPanel?
+    private var actions = ContextActions()
+    
+    func configure(actions: ContextActions) {
+        self.actions = actions
+    }
     
     func toggle() {
         if let panel, panel.isVisible {
@@ -104,11 +109,13 @@ final class ScreenshotOverlayController: NSObject, NSWindowDelegate {
     }
     
     private func show() {
+        let screen = activeScreen()
         let view = ScreenshotOverlayView(
             onComplete: { [self] rect in
                 print("complete \(rect)")
                 toggle()
-                ScreenCapture.saveOrCopy(rect: rect, screen: NSScreen.main!)
+                guard let screen else { return }
+                handleCompletedSelection(rect, screen: screen)
             },
             onCancel: { [self] in
                 print("cancel")
@@ -144,13 +151,34 @@ final class ScreenshotOverlayController: NSObject, NSWindowDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
     
+    private func handleCompletedSelection(_ rect: CGRect, screen: NSScreen) {
+        Task {
+            do {
+                let image = try await ScreenCapture.capture(rect: rect, screen: screen)
+                actions.addContext("Use this screenshot as context for the next answer.", data: .image(image))
+                copyToPasteboard(image)
+            } catch {
+                print("could not capture screenshot context: \(error)")
+            }
+        }
+    }
+    
+    private func copyToPasteboard(_ image: CGImage) {
+        let bitmap = NSBitmapImageRep(cgImage: image)
+        guard let data = bitmap.representation(using: .png, properties: [:]) else { return }
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setData(data, forType: .png)
+    }
+    
     private func activeScreenRect() -> NSRect? {
+        activeScreen()?.frame
+    }
+    
+    private func activeScreen() -> NSScreen? {
         let mouse = NSEvent.mouseLocation
-        guard let screen = NSScreen.screens.first(where: {
+        return NSScreen.screens.first(where: {
             $0.frame.contains(mouse)
-        }) ?? NSScreen.main else { return nil }
-            
-        return screen.frame
+        }) ?? NSScreen.main
     }
     
     func windowDidResignKey(_ notification: Notification) {

@@ -8,21 +8,31 @@
 import SwiftUI
 
 struct MenuBarView: View {
-    @State var enabled: Bool = true
-    
+    @Environment(AppState.self) private var appState
+    @State private var enabled: Bool = true
+
     var body: some View {
         Button("Ask a Question") {
-            NSApplication.shared.terminate(nil)
+            ContextPanelController.shared.toggle()
+            AnswerPanelController.shared.toggle()
         }.keyboardShortcut("K", modifiers: [.command])
+
         Button("Screenshot Question") {
-            NSApplication.shared.terminate(nil)
+            ScreenshotOverlayController.shared.toggle()
         }.keyboardShortcut("K", modifiers: [.command, .shift])
+
         Divider()
         Toggle("Enabled", isOn: $enabled)
         Divider()
+
+        Button("Getting Started") {
+            appState.showIntro()
+        }
+
         SettingsLink {
             Text("Settings")
         }.keyboardShortcut(",", modifiers: [.command])
+
         Button("Quit") {
             NSApplication.shared.terminate(nil)
         }.keyboardShortcut("Q", modifiers: [.command])

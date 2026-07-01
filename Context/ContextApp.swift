@@ -16,7 +16,7 @@ struct ContextApp: App {
     init() {
         KeyboardShortcuts.onKeyDown(for: .showContext) {
             ContextPanelController.shared.toggle()
-            AnswerPanelController.shared.toggle()
+            // AnswerPanelController.shared.toggle()
         }
         KeyboardShortcuts.onKeyDown(for: .screenshotContext) {
             ScreenshotOverlayController.shared.toggle()

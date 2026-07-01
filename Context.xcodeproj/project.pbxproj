@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6339F1B32FF3BEDA008672A9 /* VecturaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6339F1B22FF3BEDA008672A9 /* VecturaKit */; };
+		6339F1B52FF3BEDA008672A9 /* VecturaNLKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6339F1B42FF3BEDA008672A9 /* VecturaNLKit */; };
+		6339F1B72FF3BEDA008672A9 /* VecturaOAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6339F1B62FF3BEDA008672A9 /* VecturaOAIKit */; };
 		63FE0FAB2FEC6D3300AB142A /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 63FE0FAA2FEC6D3300AB142A /* KeyboardShortcuts */; };
 		63FE0FB82FEC794400AB142A /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 63FE0FB72FEC794400AB142A /* KeychainSwift */; };
 		63FE0FBB2FEC824000AB142A /* Ollama in Frameworks */ = {isa = PBXBuildFile; productRef = 63FE0FBA2FEC824000AB142A /* Ollama */; };
@@ -31,6 +34,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6339F1B72FF3BEDA008672A9 /* VecturaOAIKit in Frameworks */,
+				6339F1B52FF3BEDA008672A9 /* VecturaNLKit in Frameworks */,
+				6339F1B32FF3BEDA008672A9 /* VecturaKit in Frameworks */,
 				63FE0FBB2FEC824000AB142A /* Ollama in Frameworks */,
 				63FE0FB82FEC794400AB142A /* KeychainSwift in Frameworks */,
 				63FE0FAB2FEC6D3300AB142A /* KeyboardShortcuts in Frameworks */,
@@ -80,6 +86,9 @@
 				63FE0FAA2FEC6D3300AB142A /* KeyboardShortcuts */,
 				63FE0FB72FEC794400AB142A /* KeychainSwift */,
 				63FE0FBA2FEC824000AB142A /* Ollama */,
+				6339F1B22FF3BEDA008672A9 /* VecturaKit */,
+				6339F1B42FF3BEDA008672A9 /* VecturaNLKit */,
+				6339F1B62FF3BEDA008672A9 /* VecturaOAIKit */,
 			);
 			productName = Context;
 			productReference = 63FE0F932FEC679800AB142A /* Context.app */;
@@ -113,6 +122,7 @@
 				63FE0FA92FEC6D3300AB142A /* XCRemoteSwiftPackageReference "keyboardshortcuts" */,
 				63FE0FB62FEC794400AB142A /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				63FE0FB92FEC824000AB142A /* XCRemoteSwiftPackageReference "ollama-swift" */,
+				6339F1B12FF3BEDA008672A9 /* XCRemoteSwiftPackageReference "VecturaKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 63FE0F942FEC679800AB142A /* Products */;
@@ -378,6 +388,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6339F1B12FF3BEDA008672A9 /* XCRemoteSwiftPackageReference "VecturaKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rryam/VecturaKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
 		63FE0FA92FEC6D3300AB142A /* XCRemoteSwiftPackageReference "keyboardshortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/keyboardshortcuts";
@@ -405,6 +423,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6339F1B22FF3BEDA008672A9 /* VecturaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6339F1B12FF3BEDA008672A9 /* XCRemoteSwiftPackageReference "VecturaKit" */;
+			productName = VecturaKit;
+		};
+		6339F1B42FF3BEDA008672A9 /* VecturaNLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6339F1B12FF3BEDA008672A9 /* XCRemoteSwiftPackageReference "VecturaKit" */;
+			productName = VecturaNLKit;
+		};
+		6339F1B62FF3BEDA008672A9 /* VecturaOAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6339F1B12FF3BEDA008672A9 /* XCRemoteSwiftPackageReference "VecturaKit" */;
+			productName = VecturaOAIKit;
+		};
 		63FE0FAA2FEC6D3300AB142A /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 63FE0FA92FEC6D3300AB142A /* XCRemoteSwiftPackageReference "keyboardshortcuts" */;

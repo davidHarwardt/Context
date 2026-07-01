@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContextPanelView: View {
+    let actions: ContextActions
+
     var body: some View {
-        QuestionView()
+        QuestionView(actions: actions)
         /* VStack {
             Color.red
         }.frame(minWidth: 200, minHeight: 200) */
@@ -24,6 +26,11 @@ fileprivate class ContextPanel: NSPanel {
 final class ContextPanelController: NSObject, NSWindowDelegate {
     static let shared = ContextPanelController()
     private var panel: ContextPanel?
+    private var actions = ContextActions()
+    
+    func configure(actions: ContextActions) {
+        self.actions = actions
+    }
     
     func toggle() {
         if let panel, panel.isVisible {
@@ -34,7 +41,7 @@ final class ContextPanelController: NSObject, NSWindowDelegate {
     }
     
     private func show() {
-        let content = ContextPanelView()
+        let content = ContextPanelView(actions: actions)
         let hosting = NSHostingController(rootView: content)
         
         let panel = ContextPanel(
